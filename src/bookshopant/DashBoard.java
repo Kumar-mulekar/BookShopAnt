@@ -128,6 +128,12 @@ public class DashBoard extends JFrame implements ActionListener{
             new AddCustomer(2).setVisible(true);
         }else if(button.equals("Delete Customer")){
             new AddCustomer(3).setVisible(true);
+        }else if(button.equals("ADD Food")){
+            new NewFood(1).setVisible(true);
+        }else if(button.equals("Edit Food")){
+            new NewFood(2).setVisible(true);
+        }else if(button.equals("Delete Food")){
+            new NewFood(3).setVisible(true);
         }
       
     }
