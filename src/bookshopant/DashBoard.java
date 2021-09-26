@@ -71,6 +71,18 @@ public class DashBoard extends JFrame implements ActionListener{
             pay.addActionListener(this);
             //++++End Payment Column
             
+            //++++++++++Report
+            JMenu Report=new JMenu("Report");
+            JMenuItem customerReport=new JMenuItem("Customer Report");
+            JMenuItem foodReport=new JMenuItem("Food Report");
+            JMenuItem payDue=new JMenuItem("Due Report");
+            Report.setForeground(Color.BLACK);
+            
+            customerReport.addActionListener(this);
+            foodReport.addActionListener(this);
+            payDue.addActionListener(this);
+            //+++++++++++
+            
             //++++Exit Column
             JMenu Exit=new JMenu("Exit");
             JMenuItem exit=new JMenuItem("Exit");
@@ -95,6 +107,10 @@ public class DashBoard extends JFrame implements ActionListener{
             
             Payment.add(pay);
             
+            Report.add(customerReport);
+            Report.add(foodReport);
+            Report.add(payDue);
+            
             Exit.add(exit);
             //+++++++++++++
             
@@ -103,6 +119,7 @@ public class DashBoard extends JFrame implements ActionListener{
             menuBar.add(Order);
             menuBar.add(Food);
             menuBar.add(Payment);
+            menuBar.add(Report);
             menuBar.add(Exit);
             //+++++
             
@@ -134,6 +151,16 @@ public class DashBoard extends JFrame implements ActionListener{
             new NewFood(2).setVisible(true);
         }else if(button.equals("Delete Food")){
             new NewFood(3).setVisible(true);
+        }else if(button.equals("New Order")){
+            new Order().setVisible(true);
+        }else if(button.equals("Pay")){
+            new payment().setVisible(true);
+        }else if(button.equals("Customer Report")){
+            new custReport(1,"Customer Details").setVisible(true);
+        }else if(button.equals("Food Report")){
+            new custReport(2,"Food Details").setVisible(true);
+        }else if(button.equals("Due Report")){
+            new custReport(3,"Customer Due").setVisible(true);
         }
       
     }
