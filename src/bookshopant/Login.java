@@ -3,6 +3,7 @@ package bookshopant;
 import java.sql.*;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -29,7 +30,7 @@ public class Login extends JFrame implements ActionListener {
         setTitle("LOG IN");
         setSize(700, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
+        Font fontForLbl = new Font("Serif", Font.BOLD, 20);
         leftPanel = new JPanel();
         rightPanel = new JPanel(new GridBagLayout());
         add(leftPanel);
@@ -45,19 +46,24 @@ public class Login extends JFrame implements ActionListener {
         Dimension d = new Dimension(150, 30);
         lblUserId = new JLabel("USER ID");
         lblUserId.setPreferredSize(d);
+        lblUserId.setFont(fontForLbl);
         userId = new JTextField();
         userId.setPreferredSize(d);
+        userId.setFont(fontForLbl);
         lblpass = new JLabel("PASSWORD");
         lblpass.setPreferredSize(d);
+        lblpass.setFont(fontForLbl);
         pass = new JPasswordField();
         pass.setEchoChar('*');
         pass.setPreferredSize(d);
+        pass.setFont(fontForLbl);
 
         btnLogin = new JButton("Log In");
         btnLogin.setPreferredSize(d);
         btnLogin.setBackground(Color.black);
         btnLogin.setForeground(Color.WHITE);
         btnLogin.addActionListener(this);
+        btnLogin.setFont(fontForLbl);
 
         GridBagConstraints c = new GridBagConstraints();
         c.insets = new Insets(10, 10, 10, 10);

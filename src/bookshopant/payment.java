@@ -4,14 +4,12 @@ package bookshopant;
 import static bookshopant.Order.addDays;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -48,6 +46,27 @@ public class payment extends JFrame implements ActionListener {
         txtPaymentCode.setEnabled(false);
         txtCustCode=new JTextField();
         txtCustCode.setFont(fontForLbl);
+        txtCustCode.addKeyListener(new KeyListener(){
+            @Override
+            public void keyTyped(KeyEvent e) {
+               //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                //To change body of generated methods, choose Tools | Templates.
+                char c=e.getKeyChar();
+                if(Character.isDigit(c)||Character.isWhitespace(c)||Character.isISOControl(c))
+                    txtCustCode.setEditable(true);
+                else
+                    txtCustCode.setEditable(false);
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                //To change body of generated methods, choose Tools | Templates.
+            }
+        });
         txtRemark=new JTextField();
         txtRemark.setFont(fontForLbl);
         
@@ -118,6 +137,10 @@ public class payment extends JFrame implements ActionListener {
     //+++++search customer
     private void search() {
         try {
+            if(txtCustCode.getText().isBlank()){
+                JOptionPane.showMessageDialog(this,"Enter Customer code");
+                return;
+            }
             String sql = "select *from customer where code = '" + Integer.parseInt(txtCustCode.getText()) + "'";
             DbConnect conn = new DbConnect();
             ResultSet rs = conn.s.executeQuery(sql);
@@ -147,6 +170,10 @@ public class payment extends JFrame implements ActionListener {
     
     //+++++++++++pay
     private void pay(){
+        if(lblMsg.getText().isBlank()){
+            JOptionPane.showMessageDialog(this, "Please select customer");
+            return;
+        }
         try{
             DbConnect c=new DbConnect();
             java.sql.Date now=new java.sql.Date(new java.util.Date().getTime());

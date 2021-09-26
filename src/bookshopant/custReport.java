@@ -43,7 +43,12 @@ public class custReport extends JFrame implements ActionListener{
         lblHead = new JLabel("Customer Details");
         lblHead.setFont(fontForLbl);
 
-        tblData = new JTable();
+        tblData = new JTable(){
+            @Override
+            public boolean editCellAt(int row, int column, java.util.EventObject e) {
+                return false;
+            }
+        };
         dataTblModel=(DefaultTableModel) tblData.getModel();
         dataTblModel.addColumn("Code");
         dataTblModel.addColumn("Name");
